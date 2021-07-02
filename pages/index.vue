@@ -3,36 +3,52 @@
     <section class="intro">
       <h1>Get the latest tech news!</h1>
     </section>
-    <section class="featured-posts">
-      <PostPreview
-        id="1"
-        thumbnail="https://www.comillas.edu/images/modulo_cabecera/postgrado/Propios/DiplomaLegalTech.jpg"
-        title="Hello there!"
-        preview-text="This is my first post!"
-      />
-      <PostPreview
-        id="2"
-        thumbnail="https://www.comillas.edu/images/modulo_cabecera/postgrado/Propios/DiplomaLegalTech.jpg"
-        title="Hello there - the second time!"
-        preview-text="This is my second post!"
-      />
-      <PostPreview
-        id="3"
-        thumbnail="https://www.comillas.edu/images/modulo_cabecera/postgrado/Propios/DiplomaLegalTech.jpg"
-        title="Hello there - the third time!"
-        preview-text="This is my third post!"
-      />
-    </section>
+    <PostList :posts="loadedPosts" />
   </div>
 </template>
 
 <script>
-import PostPreview from '@/components/Posts/PostPreview.vue'
+import PostList from '@/components/Posts/PostList.vue'
+
 export default {
   components: {
-    PostPreview
+    PostList
+  },
+  asyncData (context, callback) {
+    // eslint-disable-next-line nuxt/no-timing-in-fetch-data
+    setTimeout(() => {
+      callback(null, {
+        loadedPosts: [
+          {
+            id: '1',
+            author: 'Hector',
+            title: 'First Post',
+            previewText: 'This is our first post!',
+            thumbnail: 'https://www.comillas.edu/images/modulo_cabecera/postgrado/Propios/DiplomaLegalTech.jpg'
+          },
+          {
+            id: '2',
+            author: 'Hector',
+            title: 'Second Post',
+            previewText: 'This is our Second post!',
+            thumbnail: 'https://www.comillas.edu/images/modulo_cabecera/postgrado/Propios/DiplomaLegalTech.jpg'
+          },
+          {
+            id: '3',
+            author: 'Hector',
+            title: 'Third Post',
+            previewText: 'This is our Third post!',
+            thumbnail: 'https://www.comillas.edu/images/modulo_cabecera/postgrado/Propios/DiplomaLegalTech.jpg'
+          }
+        ]
+      })
+    }, 1500)
+  },
+  created () {
+
   }
 }
+
 </script>
 
 <style scoped>

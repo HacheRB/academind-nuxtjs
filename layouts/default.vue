@@ -1,9 +1,9 @@
 <template>
   <div>
-    <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
+    <TheHeader @sidenavToggle="displaySidenav =!displaySidenav" />
     <TheSideNav
       :show="displaySidenav"
-      @close="displaySideNav = false"
+      @close="displaySidenav = false"
     />
     <nuxt />
   </div>
