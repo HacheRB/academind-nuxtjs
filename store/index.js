@@ -39,19 +39,19 @@ const createStore = () => {
           updatedDate: new Date()
         }
         return axios
-          .post('https://nuxt-blog.firebaseio.com/posts.json', createdPost)
+          .post('https://academind-nuxtjs-default-rtdb.europe-west1.firebasedatabase.app/posts.json', createdPost)
           .then((result) => {
             vuexContext.commit('addPost', { ...createdPost, id: result.data.name })
           })
           .catch(e => console.log(e))
       },
       editPost (vuexContext, editedPost) {
-        return axios.put('https://nuxt-blog.firebaseio.com/posts/' +
-          editedPost.id +
-          '.json', editedPost)
-          .then((res) => {
-            vuexContext.commit('editPost', editedPost)
-          })
+        return axios.put(`https://academind-nuxtjs-default-rtdb.europe-west1.firebasedatabase.app/posts/${editedPost.id}.json`, {
+          ...editedPost,
+          updatedDate: new Date()
+        })
+          .then(res =>
+            vuexContext.commit('editPost', editedPost))
           .catch(e => console.log(e))
       },
       setPosts (vuexContext, posts) {

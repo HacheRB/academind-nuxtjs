@@ -17,7 +17,7 @@ export default {
   layout: 'admin',
   asyncData (context) {
     return axios
-      .get(`https://academind-nuxtjs-default-rtdb.europe-west1.firebasedatabase.app/posts/${context.params.id}.json`)
+      .get(`https://academind-nuxtjs-default-rtdb.europe-west1.firebasedatabase.app/posts/${context.params.postId}.json`)
       .then((res) => {
         return {
           loadedPost: { ...res.data, id: context.params.postId }
@@ -27,9 +27,10 @@ export default {
   },
   methods: {
     onSubmitted (editedPost) {
-      this.$store.dispatch('editPost', editedPost).then(() => {
-        this.$router.push('/admin')
-      })
+      this.$store.dispatch('editPost', editedPost)
+        .then(() => {
+          this.$router.push('/admin')
+        })
     }
   }
 }
