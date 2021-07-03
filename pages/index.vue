@@ -8,47 +8,23 @@
 </template>
 
 <script>
-import PostList from '@/components/Posts/PostList.vue'
+import PostList from '@/components/Posts/PostList'
 
 export default {
   components: {
     PostList
   },
-  asyncData (context, callback) {
-    // eslint-disable-next-line nuxt/no-timing-in-fetch-data
-    setTimeout(() => {
-      callback(null, {
-        loadedPosts: [
-          {
-            id: '1',
-            author: 'Hector',
-            title: 'First Post',
-            previewText: 'This is our first post!',
-            thumbnail: 'https://www.comillas.edu/images/modulo_cabecera/postgrado/Propios/DiplomaLegalTech.jpg'
-          },
-          {
-            id: '2',
-            author: 'Hector',
-            title: 'Second Post',
-            previewText: 'This is our Second post!',
-            thumbnail: 'https://www.comillas.edu/images/modulo_cabecera/postgrado/Propios/DiplomaLegalTech.jpg'
-          },
-          {
-            id: '3',
-            author: 'Hector',
-            title: 'Third Post',
-            previewText: 'This is our Third post!',
-            thumbnail: 'https://www.comillas.edu/images/modulo_cabecera/postgrado/Propios/DiplomaLegalTech.jpg'
-          }
-        ]
-      })
-    }, 1500)
-  },
-  created () {
-
+  computed: {
+    loadedPosts () {
+      return this.$store.getters.loadedPosts
+    }
   }
+  // data() {
+  //   return {
+  //     loadedPosts: []
+  //   };
+  // },
 }
-
 </script>
 
 <style scoped>
@@ -57,7 +33,7 @@ export default {
   position: relative;
   padding: 30px;
   box-sizing: border-box;
-  background-image: url('@/assets/images/main-page-background.jpg');
+  background-image: url("~assets/images/main-page-background.jpg");
   background-position: center;
   background-size: cover;
 }

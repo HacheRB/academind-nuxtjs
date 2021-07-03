@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import PostPreview from '@/components/Posts/PostPreview.vue'
+import PostPreview from '@/components/Posts/PostPreview'
+
 export default {
   components: {
     PostPreview
@@ -32,11 +33,6 @@ export default {
 </script>
 
 <style scoped>
-.posts-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .post-list {
   display: flex;

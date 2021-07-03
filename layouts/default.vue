@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TheHeader @sidenavToggle="displaySidenav =!displaySidenav" />
-    <TheSideNav
+    <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
+    <TheSidenav
       :show="displaySidenav"
       @close="displaySidenav = false"
     />
@@ -10,21 +10,28 @@
 </template>
 
 <script>
-import TheHeader from '@/components/Navigation/TheHeader.vue'
-import TheSideNav from '@/components/Navigation/TheSidenav.vue'
+import TheHeader from '@/components/Navigation/TheHeader'
+import TheSidenav from '@/components/Navigation/TheSidenav'
 
 export default {
   components: {
-    TheHeader, TheSideNav
+    TheHeader,
+    TheSidenav
   },
   data () {
     return {
       displaySidenav: false
     }
   }
-
 }
 </script>
 
-<style scoped>
+<style>
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  margin: 0;
+}
 </style>

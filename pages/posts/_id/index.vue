@@ -2,29 +2,39 @@
   <div class="single-post-page">
     <section class="post">
       <h1 class="post-title">
-        Title of the Post
+        {{ loadedPost.title }}
       </h1>
       <div class="post-details">
         <div class="post-detail">
-          Last updated on XXX
+          Last updated on {{ loadedPost.updatedDate }}
         </div>
         <div class="post-detail">
-          Written by NAME
+          Written by {{ loadedPost.author }}
         </div>
       </div>
       <p class="post-content">
-        Content of the post
+        {{ loadedPost.content }}
       </p>
     </section>
     <section class="post-feedback">
-      <p>Let me know what you think about the post, send a mail to <a href="mailto:feedback@domain.com">feedback@domain.com</a></p>
+      <p>Let me know what you think about the post, send a mail to <a href="mailto:feedback@my-awesome-domain.com">feedback@my-awesome-domain.com</a>.</p>
     </section>
   </div>
 </template>
 
 <script>
-export default {
+import axios from 'axios'
 
+export default {
+  asyncData (context) {
+    return axios.get(`https://academind-nuxtjs-default-rtdb.europe-west1.firebasedatabase.app/posts/${context.params.id}.json`)
+      .then((res) => {
+        return {
+          loadedPost: res.data
+        }
+      })
+      .catch(e => context.error(e))
+  }
 }
 </script>
 
@@ -80,5 +90,4 @@ export default {
 .post-feedback a:active {
   color: salmon;
 }
-
 </style>
