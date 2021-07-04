@@ -6,7 +6,7 @@
       </h1>
       <div class="post-details">
         <div class="post-detail">
-          Last updated on {{ loadedPost.updatedDate }}
+          Last updated on {{ loadedPost.updatedDate | date }}
         </div>
         <div class="post-detail">
           Written by {{ loadedPost.author }}
@@ -27,13 +27,16 @@ import axios from 'axios'
 
 export default {
   asyncData (context) {
-    return axios.get(`https://academind-nuxtjs-default-rtdb.europe-west1.firebasedatabase.app/posts/${context.params.id}.json`)
+    return axios.get(`${process.env.baseURL}/posts/${context.params.id}.json`)
       .then((res) => {
         return {
           loadedPost: res.data
         }
       })
       .catch(e => context.error(e))
+  },
+  head: {
+    title: 'A Blog Post'
   }
 }
 </script>

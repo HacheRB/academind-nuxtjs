@@ -15,9 +15,10 @@ export default {
     AdminPostForm
   },
   layout: 'admin',
+  middleware: ['check-auth', 'auth'],
   asyncData (context) {
     return axios
-      .get(`https://academind-nuxtjs-default-rtdb.europe-west1.firebasedatabase.app/posts/${context.params.postId}.json`)
+      .get(`${process.env.baseURL}/posts/${context.params.postId}.json`)
       .then((res) => {
         return {
           loadedPost: { ...res.data, id: context.params.postId }

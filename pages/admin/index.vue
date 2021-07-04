@@ -4,6 +4,9 @@
       <AppButton @click="$router.push('/admin/new-post')">
         Create Post
       </AppButton>
+      <AppButton @click="onLogout">
+        Logout
+      </AppButton>
     </section>
     <section class="existing-posts">
       <h1>Existing Posts</h1>
@@ -16,18 +19,18 @@
 </template>
 
 <script>
-import PostList from '@/components/Posts/PostList'
-import AppButton from '@/components/UI/AppButton'
 
 export default {
-  components: {
-    PostList,
-    AppButton
-  },
   layout: 'admin',
+  middleware: ['check-auth', 'auth'],
   computed: {
     loadedPosts () {
       return this.$store.getters.loadedPosts
+    }
+  },
+  methods: {
+    onLogout () {
+      this.$store.dispatch('logout')
     }
   }
 }
